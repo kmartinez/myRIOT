@@ -1,6 +1,6 @@
 #
 # ADAPTED TO POINT TO 212b for samr30-xpro
-RIOTBASE=/home/km/RIOT
+RIOTBASE=$(HOME)/RIOT
 BOARD=samr30-xpro
 #CONFIG_IEEE802154_DEFAULT_TXPOWER=1
 CFLAGS += -DIEEE802154_DEFAULT_SUBGHZ_CHANNEL=0
@@ -18,15 +18,12 @@ USEMODULE += ps
 ifneq (,$(filter samr21-xpro,$(BOARD)))
   DRIVER := at86rf233
 endif
-ifneq (,$(filter iotlab-m3 fox,$(BOARD)))
-  DRIVER := at86rf231
-endif
 ifneq (,$(filter sam30-xpro,$(BOARD)))
   DRIVER := at86rf212b
 endif
 
-# use the at86rf231 as fallback device
-DRIVER ?= at86rf231
+# use the at86rf212b as fallback device
+DRIVER ?= at86rf212b
 
 # include the selected driver
 USEMODULE += $(DRIVER)
