@@ -134,7 +134,7 @@ int ifconfig(int argc, char **argv)
 }
 
 
-int txtsnd(void)
+int txtsnd(char *dstmacstring)
 {
     char text[20];
     uint8_t addr[_MAX_ADDR_LEN];
@@ -144,7 +144,10 @@ int txtsnd(void)
     le_uint16_t pan = { 0x0023 };
 
     iface = 0;
+    /*
     res = _parse_addr(addr, sizeof(addr), "26:ca:71:27:57:0d:7e:78");
+    */
+    res = _parse_addr(addr, sizeof(addr), dstmacstring);
     if (res == 0) {
         printf("could not parse mac address/n");
         return 1;

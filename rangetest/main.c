@@ -40,17 +40,9 @@ static char stack[_STACKSIZE];
 static kernel_pid_t _recv_pid;
 
 at86rf2xx_t devs[AT86RF2XX_NUM];
-/*
-static void sender(void)
-{
-    printf("running Sender \n");
-    txtsnd();
-}
-*/
 
 static const shell_command_t shell_commands[] = {
     { "ifconfig", "Configure netdev", ifconfig },
-    /*{ "txtsnd", "Send IEEE 802.15.4 packet", txtsnd }, fails :-( */
     { NULL, NULL, NULL }
 };
 
@@ -122,6 +114,9 @@ int main(void)
         puts("No device could be initialized");
         return 1;
     }
+    /* Switch to external antenna
+    */
+    board_antenna_config(RFCTL_ANTENNA_EXT);
 
     _recv_pid = thread_create(stack, sizeof(stack), THREAD_PRIORITY_MAIN - 1,
                               THREAD_CREATE_STACKTEST, _recv_thread, NULL,
@@ -135,8 +130,10 @@ int main(void)
     /* start the shell */
     puts("Initialization successful - starting the shell now");
     /* infinite loop to send
-	txtsnd();
 	*/
+#ifdef SENDER
+#endif
+    txtsnd("56:3a:d7:45:52:66:63:8c");
     char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
     return 0;

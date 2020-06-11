@@ -40,7 +40,7 @@ extern at86rf2xx_t devs[AT86RF2XX_NUM];
 
 void recv(netdev_t *dev);
 int ifconfig(int argc, char **argv);
-int txtsnd(void);
+int txtsnd(char *adr);
 void print_addr(uint8_t *addr, size_t addr_len);
 /**
  * @}
