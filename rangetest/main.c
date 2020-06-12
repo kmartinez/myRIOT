@@ -144,7 +144,8 @@ int main(void)
         xtimer_sleep(1);
         }
 
-    /* start the shell  - never reach here*/
+    /* start the shell  - never reaches here but it seems to mess things up if
+     * done first*/
     puts("Initialization successful - starting the shell now");
     char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
