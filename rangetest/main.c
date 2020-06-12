@@ -127,13 +127,25 @@ int main(void)
         return 1;
     }
 
-    /* start the shell */
+
+    /* xpro has no pullup on switch, need to init with PU internally. 
+     * It then reads as 0 when pressed */
+    if( gpio_init(BTN0_PIN, GPIO_IN_PU) == -1)
+        {
+        printf("Failed to init Switch\n");
+        return(0);
+        }
+    puts("press user button to start sender\n");
+    while(1){
+        if( gpio_read(BTN0_PIN) == 0) {
+            puts("going into sender mode\n");
+            txtsnd("56:3a:d7:45:52:66:63:8c");
+            }
+        xtimer_sleep(1);
+        }
+
+    /* start the shell  - never reach here*/
     puts("Initialization successful - starting the shell now");
-    /* infinite loop to send
-	*/
-#ifdef SENDER
-#endif
-    txtsnd("56:3a:d7:45:52:66:63:8c");
     char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
     return 0;
