@@ -5,8 +5,8 @@ BOARD=samr30-xpro
 # IMPORTANT to set 868MHz page (0 or 2) and a power (0-36)
 CFLAGS += -DCONFIG_IEEE802154_DEFAULT_TXPOWER=36
 CFLAGS += -DCONFIG_IEEE802154_DEFAULT_SUBGHZ_CHANNEL=0
-# Does NOT work with PAGE 2 for some reason!
-CFLAGS += -DCONFIG_IEEE802154_DEFAULT_SUBGHZ_PAGE=0
+# we're defaulting to PAGE 2
+CFLAGS += -DCONFIG_IEEE802154_DEFAULT_SUBGHZ_PAGE=2
 include $(RIOTBASE)/tests/Makefile.tests_common
 
 DISABLE_MODULE += auto_init_at86rf2xx
