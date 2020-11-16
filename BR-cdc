@@ -1,0 +1,2 @@
+cd border_router
+make BOARD=samr30-xpro  UPLINK=cdc-ecm term
