@@ -49,8 +49,8 @@ USEMODULE += nanocoap_sock
 USEMODULE += fmt
 
 # include mac layer to use
-USEMODULE += gnrc_lwmac
-CFLAGS += -DGNRC_LWMAC_ENABLE_LOW_POWER=0
+#USEMODULE += gnrc_lwmac
+#CFLAGS += -DGNRC_LWMAC_ENABLE_LOW_POWER=0
 
 # Comment this out to enable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
