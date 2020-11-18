@@ -1,3 +1,6 @@
+/* Simple coap node with a sensor and RPL forced to start
+*/
+
 /*
  * Copyright (C) 2016 Kaspar Schleiser <kaspar@schleiser.de>
  *
@@ -26,6 +29,10 @@
 #include "board.h"
 #include "periph/gpio.h"
 #include "shell.h"
+#include "net/gnrc/netif.h"
+#include "net/gnrc/rpl.h"
+#include "net/gnrc/rpl/structs.h"
+#include "net/gnrc/rpl/dodag.h"
 
 #include "si70xx_params.h"
 #include "si70xx.h"
@@ -92,7 +99,9 @@ int main(void)
 
     puts("Waiting for address autoconfiguration...");
     xtimer_sleep(3);
-
+    /* Quick hack to start RPL properly. Fixed interface Num for now 
+    */
+    gnrc_rpl_init(5);
     /* initialize nanocoap server instance by starting thread */
     thread_create(nanocoap_thread_stack, sizeof(nanocoap_thread_stack),
                   THREAD_PRIORITY_MAIN + 1, THREAD_CREATE_STACKTEST,
