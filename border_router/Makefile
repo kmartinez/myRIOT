@@ -8,7 +8,7 @@ CFLAGS += -DCONFIG_IEEE802154_DEFAULT_SUBGHZ_PAGE=0
 BOARD ?= samr30-xpro
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= /home/pi/RIOT
+RIOTBASE ?= /home/RIOT
 
 # Default to using ethos for providing the uplink when not on native
 UPLINK ?= ethos
