@@ -8,7 +8,7 @@ CFLAGS += -DCONFIG_IEEE802154_DEFAULT_SUBGHZ_PAGE=0
 BOARD ?= samr30-xpro
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= /home/RIOT
+#RIOTBASE ?= $(HOME)/RIOT
 
 # Default to using ethos for providing the uplink when not on native
 UPLINK ?= ethos
@@ -38,6 +38,7 @@ USEMODULE += ps
 # Optionally include RPL as a routing protocol. When includede gnrc_uhcpc will
 # configure the node as a RPL DODAG root when receiving a prefix.
 USEMODULE += gnrc_rpl
+USEMODULE += auto_init_gnrc_rpl
 
 # Optionally include DNS support. This includes resolution of names at an
 # upstream DNS server and the handling of RDNSS options in Router Advertisements
